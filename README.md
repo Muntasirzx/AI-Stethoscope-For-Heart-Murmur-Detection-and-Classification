@@ -4,9 +4,9 @@
 ### *Cloud-Connected Heart Murmur Detection System*
 
 [![ESP32](https://img.shields.io/badge/ESP32-S3-red?style=for-the-badge&logo=espressif&logoColor=white)](https://www.espressif.com/)
-[![TensorFlow](https://img.shields.io/badge/TensorFlow-2.13+-orange?style=for-the-badge&logo=tensorflow&logoColor=white)](https://www.tensorflow.org/)
-[![Python](https://img.shields.io/badge/Python-3.12-blue?style=for-the-badge&logo=python&logoColor=white)](https://www.python.org/)
-[![React](https://img.shields.io/badge/React-18-61DAFB?style=for-the-badge&logo=react&logoColor=black)](https://reactjs.org/)
+[![TensorFlow](https://img.shields.io/badge/TensorFlow-orange?style=for-the-badge&logo=tensorflow&logoColor=white)](https://www.tensorflow.org/)
+[![Python](https://img.shields.io/badge/Python-blue?style=for-the-badge&logo=python&logoColor=white)](https://www.python.org/)
+[![React](https://img.shields.io/badge/React-61DAFB?style=for-the-badge&logo=react&logoColor=black)](https://reactjs.org/)
 [![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)](LICENSE)
 
 ![Project Banner](https://via.placeholder.com/1200x300/1e3a8a/ffffff?text=AI+Stethoscope+%7C+Hardware+%2B+ML+%2B+Cloud)
