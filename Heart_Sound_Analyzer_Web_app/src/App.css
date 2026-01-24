@@ -1,0 +1,890 @@
+:root {
+  --bg-color: #000000;
+  --card-bg: #111111;
+  --text-primary: #ffffff;
+  --text-secondary: #888888;
+  --accent: #ffffff;
+  --border: #333333;
+  --success: #00ff00;
+  --danger: #ff4444;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+}
+
+body {
+  background-color: var(--bg-color);
+  color: var(--text-primary);
+  height: 100vh;
+  margin: 0;
+  overflow: hidden;
+}
+
+.app {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  position: relative;
+}
+
+header {
+  padding: 15px 20px;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: var(--bg-color);
+  z-index: 10;
+}
+
+.logo {
+  font-weight: 700;
+  font-size: 1.2rem;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.logo svg {
+  width: 24px;
+  height: 24px;
+  fill: var(--text-primary);
+}
+
+main {
+  flex: 1;
+  display: flex;
+  overflow: hidden;
+  min-height: 0;
+}
+
+/* Sidebar */
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: -300px;
+  width: 300px;
+  height: 100%;
+  background-color: var(--card-bg);
+  border-right: 1px solid var(--border);
+  z-index: 1001;
+  transition: left 0.3s ease;
+  display: flex;
+  flex-direction: column;
+}
+
+.sidebar.active {
+  left: 0;
+}
+
+.sidebar-header {
+  padding: 20px;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.sidebar-title {
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.close-btn {
+  background: none;
+  border: none;
+  color: var(--text-secondary);
+  cursor: pointer;
+}
+
+.history-list {
+  flex: 1;
+  overflow-y: auto;
+  padding: 10px;
+}
+
+.history-item {
+  padding: 15px;
+  border-bottom: 1px solid var(--border);
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.history-item:hover {
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+.history-date {
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+  margin-bottom: 5px;
+}
+
+.history-name {
+  font-weight: 500;
+  margin-bottom: 5px;
+}
+
+.history-result {
+  font-size: 0.85rem;
+}
+
+.menu-btn {
+  background: none;
+  border: none;
+  color: var(--text-primary);
+  cursor: pointer;
+  margin-right: 15px;
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 1000;
+  display: none;
+}
+
+.overlay.active {
+  display: block;
+}
+
+/* Input Panel */
+.input-panel {
+  width: 350px;
+  flex-shrink: 0;
+  max-height: calc(100vh - 60px);
+  padding: 20px;
+  border-right: 1px solid var(--border);
+  background-color: #050505;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  overflow-y: auto;
+}
+
+.section-title {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 15px;
+  font-weight: 600;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+label {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+}
+
+input,
+select {
+  background-color: #1a1a1a;
+  border: 1px solid var(--border);
+  color: var(--text-primary);
+  padding: 10px;
+  border-radius: 4px;
+  font-size: 0.95rem;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+input:focus,
+select:focus {
+  border-color: var(--accent);
+}
+
+.file-upload {
+  border: 2px dashed var(--border);
+  border-radius: 8px;
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.2s;
+  background-color: #0a0a0a;
+}
+
+.file-upload:hover {
+  border-color: var(--text-secondary);
+  background-color: #111;
+}
+
+.file-upload.selected {
+  border-color: var(--success);
+  background-color: rgba(0, 255, 0, 0.05);
+}
+
+.file-upload svg {
+  width: 32px;
+  height: 32px;
+  fill: var(--text-secondary);
+  margin-bottom: 10px;
+}
+
+.file-name {
+  margin-top: 10px;
+  font-size: 0.85rem;
+  color: var(--accent);
+  word-break: break-all;
+}
+
+.btn {
+  background-color: var(--text-primary);
+  color: var(--bg-color);
+  border: none;
+  padding: 12px;
+  border-radius: 4px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: opacity 0.2s;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-top: auto;
+}
+
+.btn:hover {
+  opacity: 0.9;
+}
+
+.btn:disabled {
+  background-color: #333;
+  color: #666;
+  cursor: not-allowed;
+}
+
+/* Results Panel */
+.results-panel {
+  flex: 1 1 0;
+  background-color: var(--bg-color);
+  position: relative;
+  overflow: hidden;
+  min-height: 0;
+}
+
+.empty-state {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: var(--text-secondary);
+  text-align: center;
+}
+
+/* Results Panel Styles */
+.results-content {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 30px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.results-content>* {
+  flex-shrink: 0;
+}
+
+/* Report Header (Screen) */
+.report-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid var(--border);
+}
+
+.report-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.report-date {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+}
+
+.btn-print {
+  background: transparent;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  color: var(--text-secondary);
+  cursor: pointer;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  padding: 6px 12px;
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.btn-print:hover {
+  border-color: var(--text-primary);
+  color: var(--text-primary);
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+.btn-print svg {
+  width: 14px;
+  height: 14px;
+  fill: currentColor;
+}
+
+/* Patient Grid (Screen) */
+.patient-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 15px;
+  margin-bottom: 20px;
+  background-color: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 20px;
+}
+
+.patient-item {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.patient-item .label {
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.patient-item .value {
+  font-size: 1rem;
+  color: var(--text-primary);
+  font-weight: 500;
+}
+
+.diagnosis-box {
+  background-color: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 20px;
+  margin-bottom: 20px;
+}
+
+.diagnosis-box .label {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 5px;
+}
+
+.diagnosis-value {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 5px;
+}
+
+.diagnosis-sub {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+}
+
+.analysis-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.confidence-meter {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Circular Chart */
+.circular-chart {
+  display: block;
+  width: 80px;
+  height: 80px;
+}
+
+.circle-bg {
+  fill: none;
+  stroke: #333;
+  stroke-width: 3;
+}
+
+.circle {
+  fill: none;
+  stroke-width: 3;
+  stroke-linecap: round;
+  animation: progress 1s ease-out forwards;
+  transform: rotate(-90deg);
+  transform-origin: center;
+}
+
+.percentage {
+  fill: var(--text-primary);
+  font-family: sans-serif;
+  font-weight: bold;
+  font-size: 0.3em;
+  text-anchor: middle;
+}
+
+@keyframes progress {
+  0% {
+    stroke-dasharray: 0 100;
+  }
+}
+
+.plot-container {
+  background-color: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 300px;
+}
+
+.plot-container img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 4px;
+}
+
+.notes {
+  background-color: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 20px;
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+/* Loading Overlay */
+.loading {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s;
+}
+
+.loading.active {
+  opacity: 1;
+  pointer-events: all;
+}
+
+.spinner {
+  width: 50px;
+  height: 50px;
+  border: 3px solid rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  border-top-color: var(--accent);
+  animation: spin 1s ease-in-out infinite;
+  margin-bottom: 20px;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Screen-only elements */
+.print-only {
+  display: none;
+}
+
+/* Print Styles */
+@media print {
+
+  html,
+  body,
+  .app,
+  main {
+    background-color: white;
+    color: black;
+    height: auto !important;
+    min-height: 100%;
+    overflow: visible !important;
+    margin: 0;
+    padding: 0;
+    display: block !important;
+  }
+
+  body {
+    padding-bottom: 50px;
+  }
+
+  header,
+  .input-panel,
+  .btn,
+  .screen-only,
+  .sidebar,
+  .overlay,
+  .back-btn,
+  .header-actions {
+    display: none !important;
+  }
+
+  .results-panel {
+    overflow: visible !important;
+    height: auto !important;
+    display: block !important;
+  }
+
+  .results-content,
+  .advanced-results-container {
+    padding: 0;
+    display: block !important;
+    overflow: visible !important;
+    height: auto !important;
+  }
+
+  /* Hide scrollbars in print */
+  ::-webkit-scrollbar {
+    display: none;
+  }
+
+  .report-header {
+    border-bottom: 2px solid #333;
+    padding-bottom: 20px;
+    margin-bottom: 30px;
+  }
+
+  .report-title {
+    font-size: 24px;
+    font-weight: bold;
+    color: black;
+  }
+
+  /* Ensure date is visible in print */
+  .report-date {
+    display: block !important;
+    color: black !important;
+    font-size: 14px;
+  }
+
+  .patient-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin-bottom: 30px;
+    border: 1px solid #ddd;
+    padding: 20px;
+    background-color: white;
+  }
+
+  .patient-item .label {
+    font-size: 12px;
+    color: #666;
+    text-transform: uppercase;
+  }
+
+  .patient-item .value {
+    font-size: 16px;
+    font-weight: bold;
+    color: black;
+  }
+
+  /* Force background colors for progress bars */
+  .progress-bar-fill {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  .progress-bar-bg {
+    background-color: #eee !important;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  .valve-summary-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+
+  /* Fix for cut-off content in print: Use block instead of flex */
+  .valve-detail-list {
+    display: block !important;
+  }
+
+  .valve-summary-card,
+  .valve-detail-section {
+    background-color: white;
+    border: 1px solid #ddd;
+    color: black;
+    break-inside: avoid;
+    page-break-inside: avoid;
+    margin-bottom: 20px;
+    display: block;
+    position: relative;
+    /* Fix for some rendering engines */
+  }
+
+  /* Ensure the last item has space */
+  .valve-detail-section:last-child {
+    margin-bottom: 0;
+  }
+
+  .print-only {
+    display: block;
+  }
+
+  .diagnosis-box {
+    border: 1px solid #ddd;
+    background-color: white;
+    color: black;
+  }
+
+  .diagnosis-box .label {
+    color: #666;
+  }
+
+  .plot-container {
+    border: none;
+    background-color: white;
+  }
+
+  .notes {
+    border: 1px solid #ddd;
+    background-color: white;
+    color: black;
+  }
+
+  /* Adjust circular chart for print */
+  .circular-chart {
+    width: 60px;
+    height: 60px;
+  }
+
+  .percentage {
+    fill: black;
+  }
+}
+
+/* Mode Selection */
+.mode-selection {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: var(--bg-color);
+  z-index: 2000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 40px;
+  padding: 20px;
+}
+
+.mode-card {
+  background-color: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 40px;
+  width: 300px;
+  height: 350px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  /* Center content vertically */
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-align: center;
+}
+
+.mode-card:hover {
+  transform: translateY(-10px);
+  border-color: var(--accent);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  background-color: #1a1a1a;
+}
+
+.mode-icon {
+  display: none;
+  /* Hide icons */
+}
+
+.mode-card h2 {
+  margin-bottom: 10px;
+  font-size: 1.5rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.mode-card p {
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+}
+
+/* Advanced Mode Grid */
+.advanced-input-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  margin-bottom: 20px;
+}
+
+.advanced-results-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 30px;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.advanced-results-container>* {
+  flex-shrink: 0;
+}
+
+/* Advanced Results Structure */
+.valve-summary-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  /* 2x2 Grid */
+  gap: 20px;
+  margin-bottom: 40px;
+}
+
+.valve-summary-card {
+  background-color: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.valve-detail-list {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.valve-detail-section {
+  background-color: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 20px;
+}
+
+.valve-label {
+  font-weight: 700;
+  font-size: 1.2rem;
+  width: 50px;
+  color: var(--text-secondary);
+}
+
+.valve-status {
+  flex: 1;
+}
+
+.status-text {
+  font-weight: 600;
+  margin-bottom: 5px;
+  text-transform: uppercase;
+  font-size: 0.9rem;
+}
+
+.progress-bar-bg {
+  width: 100%;
+  height: 8px;
+  background-color: #333;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.progress-bar-fill {
+  height: 100%;
+  background-color: var(--success);
+  transition: width 1s ease;
+}
+
+.confidence-text {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  margin-top: 5px;
+  text-align: right;
+}
+
+.back-btn {
+  position: absolute;
+  top: 18px;
+  right: 100px;
+  left: auto;
+  z-index: 100;
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  color: var(--text-primary);
+  padding: 6px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.85rem;
+}
+
+.back-btn:hover {
+  background: #222;
+}
