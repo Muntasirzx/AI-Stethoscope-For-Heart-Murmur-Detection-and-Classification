@@ -113,18 +113,27 @@ Actual
 **Architecture:** Fusion CNN — 1.9M parameters
 
 ```
-Input Branch A        Input Branch B        Input Branch C
-Mel-Spectrogram       MFCC Features         HRV Metrics
-  (128 × 128)          (40 × 128)            (scalar)
-      │                    │                     │
-   Conv2D              Conv2D               Dense
-      │                    │                     │
-      └──────────── Concatenate ─────────────────┘
-                          │
-                       Dense
-                          │
+Input Branch A        Input Branch B         Input Branch C
+Mel-Spectrogram       MFCC Features           HRV Metrics
+  (128 × 128)          (40 × 128)               (scalar)
+      │                    │                        │
+   Conv2D                Conv2D                   Dense
+      │                    │                        │
+      └─────────────── Concatenate ─────────────────┘
+                           │
+                         Dense
+                           │
               Binary Output (Normal / Murmur)
+
 ```
+<div>
+    <img src="https://raw.githubusercontent.com/Muntasirzx/AI-Stethoscope-For-Heart-Murmur-Detection-and-Classification/refs/heads/main/DATA/circorpcg_architecture%20(1).gif" >
+
+</div>
+
+
+---
+
 
 **Training configuration:**
 
