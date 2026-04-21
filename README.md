@@ -75,25 +75,38 @@ The system captures cardiac audio through a dual-microphone stethoscope, applies
 | Metric | Value |
 |---|---|
 | **Accuracy** | 91.0% |
-| **Precision** | 95.6% |
-| **Recall** | 86.0% |
+| **Precision** | 92.0% |
+| **Recall** | 91.0% |
 | **SNR Improvement** | +12.6 dB |
 | **Inference Latency** | 145 ms |
 | **Battery Life** | 9.9 hours |
 | **Training Set** | 5,272 recordings (CirCor DigiScope) |
 | **Model Parameters** | 1.9M |
 
+**Test Set Evaluation**
+<div>
+    <img src="https://raw.githubusercontent.com/Muntasirzx/AI-Stethoscope-For-Heart-Murmur-Detection-and-Classification/refs/heads/main/DATA/Test%20Set%20Evaluation.png" >
+
+</div>
+
 **Confusion Matrix**
 
-```
-                    Predicted
-                 Normal    Murmur
-         Normal    460        19
-Actual
-         Murmur     67       411
-```
+<div>
+    <img src="https://raw.githubusercontent.com/Muntasirzx/AI-Stethoscope-For-Heart-Murmur-Detection-and-Classification/refs/heads/main/DATA/Confusion%20Matrix.png" >
 
----
+</div>
+
+**Loss and AUC Curve**
+<div>
+    <img src="https://raw.githubusercontent.com/Muntasirzx/AI-Stethoscope-For-Heart-Murmur-Detection-and-Classification/refs/heads/main/DATA/Loss%20and%20AUC%20Curve.png" >
+
+</div>
+
+**ROC and Precison-Recall Curve**
+<div>
+    <img src="https://raw.githubusercontent.com/Muntasirzx/AI-Stethoscope-For-Heart-Murmur-Detection-and-Classification/refs/heads/main/DATA/ROCcurve.png" >
+
+</div>
 
 ## `〉` Features
 
