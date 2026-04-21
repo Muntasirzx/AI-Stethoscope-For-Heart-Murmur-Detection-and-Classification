@@ -125,7 +125,7 @@ The system captures cardiac audio through a dual-microphone stethoscope, applies
 
 **Architecture:** Fusion CNN — 1.9M parameters
 
-<img src="https://raw.githubusercontent.com/Muntasirzx/AI-Stethoscope-For-Heart-Murmur-Detection-and-Classification/refs/heads/main/DATA/CRNN%20Architecture%20Diagram-1.png" width="89%"/>
+<img src="https://raw.githubusercontent.com/Muntasirzx/AI-Stethoscope-For-Heart-Murmur-Detection-and-Classification/refs/heads/main/DATA/CRNN%20Architecture%20Diagram-1.png" />
 
 
 
