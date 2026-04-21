@@ -47,6 +47,8 @@ The system captures cardiac audio through a dual-microphone stethoscope, applies
 
 ## `〉` System Architecture
 
+**PCB Layout:**
+
 ```
 ┌─────────────────────────────────────────────────────────────────┐
 │                    SYSTEM DATA FLOW                             │
@@ -67,6 +69,18 @@ The system captures cardiac audio through a dual-microphone stethoscope, applies
 │              │  Live waveform · Classification result · History │
 └──────────────┴──────────────────────────────────────────────────┘
 ```
+**PCB Layout:**
+<div>
+    <img src="https://raw.githubusercontent.com/Muntasirzx/AI-Stethoscope-For-Heart-Murmur-Detection-and-Classification/refs/heads/main/DATA/Pcb_TOP1.png" width="49%"/> 
+    <img src="https://raw.githubusercontent.com/Muntasirzx/AI-Stethoscope-For-Heart-Murmur-Detection-and-Classification/refs/heads/main/DATA/PCB_Bottom1.png" width="49%"/>
+</div>
+
+**Developed Prototype:**
+
+<div>
+    <img src="https://raw.githubusercontent.com/Muntasirzx/AI-Stethoscope-For-Heart-Murmur-Detection-and-Classification/refs/heads/main/DATA/b.jpg" >
+
+</div>
 
 ---
 
